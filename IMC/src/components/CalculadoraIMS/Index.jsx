@@ -19,7 +19,7 @@ const CalculadoraIMS = () => {
     setResultado(true);
   };
 
-  const alterar = () => {
+  useEffect(() => {
     if (imc < 18.5) {
       setTipo("Baixo do peso");
     } else if (imc < 24.9) {
@@ -27,12 +27,11 @@ const CalculadoraIMS = () => {
     } else if (imc < 29.9) {
       setTipo("Sobrepeso");
     } else if (imc < 34.9) {
-      console.log("foi");
       setTipo("Obesidade");
-    } else if (imc < 35) {
+    } else {
       setTipo("Obesidade Severa");
     }
-  };
+  }, [imc]);
 
   return (
     <div className={styles.body}>
@@ -60,11 +59,7 @@ const CalculadoraIMS = () => {
             onChange={(e) => setPeso(parseFloat(e.target.value))}
           />
         </div>
-        <button
-          type="submit"
-          className={styles.calculadora__bloco__button}
-          onClick={alterar}
-        >
+        <button type="submit" className={styles.calculadora__bloco__button}>
           Calcular
         </button>
         <div>
